@@ -24,3 +24,31 @@ ANDROID TERMUX DEPLOY / UPDATE
 9. GitHub Pages URL: https://fansahu.github.io/banana-vision-iphone/
 
 After push, wait for GitHub Pages deployment. Open the URL in Safari and refresh. If old shell remains cached, close Home Screen app and open the URL in Safari once; refresh, then reopen Home Screen app.
+
+
+================ FINAL BUILD NOTES ================
+
+Is build me Gallery/Library, Favorites, Settings, Photo editing,
+Video tools, Audio tools, Image/PDF print tools, File Manager,
+ZIP export/restore (app-created STORE ZIP), Collage Maker,
+Color Picker, Image Compare, Aspect Ratio Calculator aur
+supported browsers me WebM photo slideshow shamil hain.
+
+IMPORTANT LIMITATIONS:
+- App device ki poori Photos library ko background me scan nahi karta.
+  Photos/files user ko picker se import karne hote hain.
+- File Manager sirf app me import ki gayi media files manage karta hai.
+- ZIP restore abhi app ke STORE/uncompressed ZIP format ke liye hai.
+- Slideshow export WebM hai, GIF nahi; MediaRecorder/canvas support
+  browser aur device ke hisaab se badal sakta hai.
+- PDF workflow browser print dialog par nirbhar hai.
+- Video clip export, codec playback aur kuch media features iOS Safari
+  par supported na bhi hon.
+- Browser storage clear/evict ho sakta hai; original media ka backup rakhein.
+- Ye build code/syntax aur ZIP integrity checks se guzra hai; iska matlab
+  har iPhone/Android model par runtime testing complete hona nahi hai.
+
+INSTALL/UPDATE:
+GitHub Pages par project ke saare files repository root me upload karein.
+Service worker cache version v8 hai. Deploy ke baad site ko reload karein.
+Agar purana build dikhe, browser me site data/cache clear karke dobara kholein.

@@ -13,22 +13,106 @@
 </section>
 <section id="tools" class="page"><div class="heading"><small>BUILT-IN UTILITIES</small><h1>Media Tools</h1></div>
 <article><h3>Image converter & compressor</h3><p>Choose an imported photo, convert to JPEG/PNG/WebP (browser support dependent), adjust quality and download.</p><select id="imageSelect"></select><div class="row"><select id="imageFormat"><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select><select id="quality"><option value=".9">High quality</option><option value=".75">Balanced</option><option value=".5">Smaller file</option></select><button id="convertImage" class="gold">Convert & Download</button></div></article>
+<article><h3>Advanced image tools</h3>
+<p>Resize, compress, center-crop and watermark an imported photo. Original file stays unchanged.</p>
+<select id="advancedImageSelect"></select>
+<div class="row"><label>Width <input id="toolWidth" type="number" min="1" max="12000" placeholder="Original"></label><label>Height <input id="toolHeight" type="number" min="1" max="12000" placeholder="Original"></label></div>
+<div class="row"><label>Crop <select id="cropMode"><option value="none">No crop</option><option value="square">Square</option><option value="4:3">4:3</option><option value="16:9">16:9</option><option value="3:4">3:4 portrait</option></select></label>
+<label>Quality <select id="toolQuality"><option value=".92">High</option><option value=".78">Balanced</option><option value=".55">Small file</option></select></label></div>
+<div class="row"><input id="watermarkText" type="text" maxlength="80" placeholder="Optional watermark text"><button id="processImage" class="gold">Process & Download</button></div>
+<pre id="imageToolStatus" class="info">Choose an imported photo to begin.</pre>
+</article>
+<article><h3>Create PDF from photos</h3>
+<p>Select imported photos, then open a print-ready document. Use the device print/share menu to save as PDF where available.</p>
+<select id="pdfPhotoSelect" multiple size="5" aria-label="Choose photos for PDF"></select>
+<button id="makePhotoPdf" class="gold">Prepare photo PDF</button>
+<p class="small">This uses the browser print dialog; direct PDF file generation is not guaranteed in every iPhone browser.</p>
+</article>
+<article><h3>Collage Maker</h3>
+<p>Select 2–9 imported photos and create a downloadable collage image.</p>
+<select id="collageSelect" multiple size="6" aria-label="Select photos for collage"></select>
+<div class="row"><label>Layout <select id="collageLayout"><option value="grid">Grid</option><option value="horizontal">Horizontal strip</option><option value="vertical">Vertical strip</option></select></label>
+<label>Background <input id="collageBg" type="color" value="#ffffff"></label></div>
+<button id="makeCollage" class="gold">Create collage</button>
+</article>
+<article><h3>Color Picker</h3>
+<p>Pick a color and copy its HEX/RGB values.</p>
+<input id="colorPicker" type="color" value="#d7a943">
+<pre id="colorValue" class="info">#D7A943</pre><button id="copyColor">Copy HEX</button>
+</article>
+<article><h3>Image Compare</h3>
+<p>Choose two imported photos to compare them side by side.</p>
+<div class="row"><select id="compareA"></select><select id="compareB"></select></div>
+<button id="compareImages" class="gold">Compare photos</button><div id="compareResult" class="compare-result"></div>
+</article>
+<article><h3>Aspect Ratio Calculator</h3>
+<p>Enter dimensions to calculate the aspect ratio and common matching sizes.</p>
+<div class="row"><label>Width <input id="ratioWidth" type="number" min="1" value="1920"></label><label>Height <input id="ratioHeight" type="number" min="1" value="1080"></label></div>
+<button id="calcRatio">Calculate ratio</button><pre id="ratioResult" class="info">16:9</pre>
+</article>
+<article><h3>Animated Preview (WebM)</h3>
+<p>Turn selected photos into a short animated WebM video where MediaRecorder and canvas capture are supported. This is not a GIF file.</p>
+<select id="animationSelect" multiple size="5" aria-label="Select photos for animation"></select>
+<div class="row"><label>Frame time (ms) <input id="frameTime" type="number" min="200" max="5000" value="1000"></label></div>
+<button id="makeAnimation" class="gold">Create animated WebM</button><p id="animationStatus" class="small"></p>
+</article>
 <article><h3>Media information</h3><p>Select any imported item to inspect its name, format, size and dimensions/duration when available.</p><select id="infoSelect"></select><button id="inspect" class="gold">Show details</button><pre id="info" class="info">No item selected.</pre></article>
 <article><h3>Duplicate finder</h3><p>Find likely duplicates by matching file size and name. This is a heuristic, not a cryptographic content comparison.</p><button id="duplicates" class="gold">Find likely duplicates</button><div id="dupeResult" class="info"></div></article>
 <article><h3>Storage manager</h3><p id="storage">Checking local storage…</p><button id="backup" class="gold">Export library list</button><p class="small">The export is a JSON inventory, not a backup of the media files. Keep original files separately.</p></article>
 </section>
 <section id="favorites" class="page"><div class="heading"><small>YOUR COLLECTION</small><h1>Favorites</h1></div><div id="favgrid" class="grid"></div></section>
+<section id="files" class="page">
+<div class="heading"><small>LOCAL APP LIBRARY</small><h1>File Manager</h1></div>
+<article><h3>Manage imported media</h3>
+<p>This manager works with media imported into Banana Vision. It cannot browse or modify the whole iPhone/Android filesystem.</p>
+<div class="row"><input id="fileSearch" type="search" placeholder="Search library files"><select id="fileType"><option value="all">All types</option><option value="photo">Photos</option><option value="video">Videos</option><option value="audio">Audio</option></select><select id="fileSort"><option value="new">Newest</option><option value="name">Name</option><option value="size">Largest</option></select></div>
+<div id="fileList" class="file-list"></div>
+<div class="row"><button id="downloadSelected" class="gold">Download selected</button><button id="zipSelected">Export selected ZIP</button></div>
+<div class="row"><button id="zipAll">Export entire library ZIP</button><button id="importZip">Import ZIP backup</button><input id="zipPicker" type="file" accept=".zip,application/zip" hidden></div>
+<p class="small" id="fileStatus">ZIP import supports uncompressed (STORE) ZIP entries created by this app. Other ZIP compression methods may not be supported.</p>
+</article>
+<article><h3>Storage & backup</h3><p id="fileStorage"></p><button id="downloadInventory">Download library inventory JSON</button></article>
+</section>
 <section id="settings" class="page"><div class="heading"><small>PREFERENCES</small><h1>Settings</h1></div>
 <article><h3>Library & privacy</h3><p>Imported files are stored locally in this browser using IndexedDB. They are not uploaded to a server. iOS may remove website data when storage is low or website data is cleared.</p></article>
 <article><h3>iPhone access limitation</h3><p>A PWA cannot silently scan the complete iPhone Photos library. Use Import and select items from the iOS picker. This is an Apple platform restriction.</p></article>
 <article><h3>Install</h3><p>Open this site in Safari → Share → Add to Home Screen → enable Open as Web App → Add.</p></article>
 <button id="deleteLibrary" class="danger">Delete all imported media</button></section>
 </main>
-<nav><button data-page="library" class="active">▦<small>Library</small></button><button data-page="tools">✧<small>Tools</small></button><button data-page="favorites">♥<small>Favorites</small></button><button data-page="settings">⚙<small>Settings</small></button></nav>
+<nav><button data-page="library" class="active">▦<small>Library</small></button><button data-page="tools">✧<small>Tools</small></button><button data-page="favorites">♥<small>Favorites</small></button><button data-page="files">▤<small>Files</small></button><button data-page="settings">⚙<small>Settings</small></button></nav>
 <div id="viewer"><div class="vbar"><button id="close">✕</button><span id="title">Media</span><div><button id="fav">♡</button><button id="share">↗</button></div></div>
 <div id="stage"><img id="photo" alt=""><video id="video" playsinline controls></video><audio id="audio" controls></audio></div>
 <div id="photoTools"><button id="rotate">↻ Rotate</button><button id="zoom">Zoom</button><button id="slide">▶ Slideshow</button><button id="edit">Edit</button></div>
-<div id="editPanel"><label>Brightness <input id="brightness" type="range" min="50" max="160" value="100"></label><label>Contrast <input id="contrast" type="range" min="50" max="160" value="100"></label><button id="saveEdit">Export edited image</button></div>
-<div id="videoTools"><div class="seek"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0"><span id="duration">0:00</span></div><div class="controls"><button id="back">−10s</button><button id="play">Play/Pause</button><button id="forward">+10s</button><select id="speed"><option>0.25</option><option>0.5</option><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option><option>1.75</option><option>2</option></select></div></div>
-<div id="audioTools"><button id="aprev">Previous</button><button id="aplay">Play/Pause</button><button id="anext">Next</button></div><p class="hint">Swipe to change · Double tap photo to zoom · Double tap video for ±10s</p></div><div id="toast"></div>
+<div id="editPanel">
+<label>Brightness <input id="brightness" type="range" min="25" max="200" value="100"></label>
+<label>Contrast <input id="contrast" type="range" min="25" max="200" value="100"></label>
+<label>Saturation <input id="saturation" type="range" min="0" max="200" value="100"></label>
+<label>Filter <select id="photoFilter"><option value="none">Original</option><option value="grayscale(1)">Black & White</option><option value="sepia(1)">Sepia</option><option value="saturate(1.5)">Vivid</option><option value="contrast(1.2) saturate(.8)">Matte</option></select></label>
+<label>Resize width <input id="resizeWidth" type="number" min="1" max="12000" placeholder="Original"></label>
+<label>Resize height <input id="resizeHeight" type="number" min="1" max="12000" placeholder="Original"></label>
+<label>Text overlay <input id="overlayText" type="text" maxlength="120" placeholder="Add text (optional)"></label>
+<label>Text size <input id="overlaySize" type="range" min="12" max="120" value="36"></label>
+<div class="row"><button id="editRotate">↻ Rotate</button><button id="editFlip">↔ Flip</button><button id="resetEdit">Reset edits</button></div>
+<label>Export format <select id="editFormat"><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></label>
+<button id="saveEdit" class="gold">Export edited image</button>
+</div>
+<div id="videoTools"><div class="seek"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0"><span id="duration">0:00</span></div><div class="controls"><button id="back">−10s</button><button id="play">Play/Pause</button><button id="forward">+10s</button><select id="speed"><option>0.25</option><option>0.5</option><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option><option>1.75</option><option>2</option></select><button id="loopVideo">Loop: Off</button><button id="muteVideo">Mute</button><button id="rotateVideo">Rotate</button><button id="fitVideo">Fit: Contain</button><button id="snapshotVideo">Save Frame</button></div>
+<div class="clip-tools"><div class="clip-label">Video clip range</div><div class="clip-range"><label>Start <input id="clipStart" type="number" min="0" step="0.1" value="0"></label><label>End <input id="clipEnd" type="number" min="0" step="0.1" placeholder="Video end"></label></div><div class="row"><button id="markStart">Set start to current</button><button id="markEnd">Set end to current</button><button id="exportClip" class="gold">Export clip (supported browsers)</button></div><p class="small" id="clipStatus">Trim export requires browser video capture and MediaRecorder support; availability varies, especially on iPhone.</p></div></div>
+<div id="audioTools">
+<div class="audio-meta"><span id="audioTrackName">Now playing</span><span id="audioTrackTime">0:00 / 0:00</span></div>
+<div class="audio-seek"><input id="audioSeek" type="range" min="0" max="1000" value="0" aria-label="Audio position"></div>
+<div class="controls audio-controls">
+<button id="aprev">Previous</button><button id="aplay">Play/Pause</button><button id="anext">Next</button>
+<button id="shuffleAudio">Shuffle: Off</button><button id="repeatAudio">Repeat: Off</button>
+</div>
+<div class="audio-trim">
+<div class="clip-label">Audio trim / export</div>
+<div class="clip-range">
+<label>Start (sec) <input id="audioStart" type="number" min="0" step="0.1" value="0"></label>
+<label>End (sec) <input id="audioEnd" type="number" min="0" step="0.1" placeholder="Audio end"></label>
+</div>
+<div class="row"><button id="audioMarkStart">Set start to current</button><button id="audioMarkEnd">Set end to current</button><button id="audioExportWav" class="gold">Export selected audio as WAV</button></div>
+<p id="audioToolStatus" class="small">Audio export depends on browser decoding support and available memory.</p>
+</div>
+</div><p class="hint">Swipe to change · Double tap photo to zoom · Double tap video for ±10s</p></div><div id="toast"></div>
 <script src="app.js"></script></body></html>
