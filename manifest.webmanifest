@@ -1,11 +1,12 @@
 {
-  "name": "Banana Vision Ultimate",
+  "name": "Banana Vision MAX",
   "short_name": "Banana Vision",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#080808",
   "theme_color": "#080808",
+  "orientation": "any",
   "icons": [
     {
       "src": "icons/icon-192.png",
