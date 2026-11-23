@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Banana Vision — your personal photo and video player">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css"><title>Banana Vision</title>
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="mark">B</span><div><b>Banana Vision</b><small>PHOTO & VIDEO PLAYER</small></div></div><button id="themeBtn" class="iconbtn" aria-label="Toggle theme">◐</button></header>
+<main>
+<section id="libraryView" class="view active">
+  <div class="hero"><div><p class="eyebrow">YOUR PERSONAL MEDIA SPACE</p><h1>See every moment<br><em>beautifully.</em></h1><p class="muted">Your media stays on this device.</p></div><div class="heroOrb">BV</div></div>
+  <div class="toolbar"><div class="tabs"><button class="tab selected" data-filter="all">All</button><button class="tab" data-filter="photo">Photos</button><button class="tab" data-filter="video">Videos</button><button class="tab" data-filter="favorite">♥</button></div><button id="addBtn" class="goldbtn">＋ Add media</button></div>
+  <div class="searchrow"><input id="search" type="search" placeholder="Search your library"><select id="sort"><option value="new">Recently added</option><option value="name">Name</option><option value="old">Oldest first</option><option value="size">Largest first</option></select></div>
+  <input id="fileInput" type="file" accept="image/*,video/*" multiple hidden>
+  <div id="status" class="status">Add photos or videos to start your library.</div>
+  <div id="grid" class="grid"></div>
+  <p class="footnote">Tip: choose multiple items in the iPhone Files or Photos picker. Safari may offer different selection options.</p>
+</section>
+<section id="favoritesView" class="view"><div class="pagehead"><p class="eyebrow">YOUR COLLECTION</p><h1>Favorites</h1></div><div id="favGrid" class="grid"></div></section>
+<section id="settingsView" class="view"><div class="pagehead"><p class="eyebrow">MAKE IT YOURS</p><h1>Settings</h1></div>
+<div class="setting"><div><b>Keep selected media on this device</b><p>Save selected files in this app's local library so they remain after closing it.</p></div><span class="pill">ON</span></div>
+<div class="setting"><div><b>Playback speed</b><p>Available in the video player from 0.25× to 2×.</p></div></div>
+<div class="setting"><div><b>Storage</b><p id="storageInfo">Checking local library…</p></div><button id="clearBtn" class="danger">Delete library</button></div>
+<div class="setting"><div><b>About media access</b><p>iPhone websites cannot scan your whole Photos library automatically. Add media using the iOS picker. Local browser storage can be cleared by iOS or by clearing website data.</p></div></div>
+</section>
+</main>
+<nav class="bottomnav"><button class="navitem active" data-view="libraryView"><span>▦</span>Library</button><button class="navitem" data-view="favoritesView"><span>♥</span>Favorites</button><button class="navitem" data-view="settingsView"><span>⚙</span>Settings</button></nav>
+<div id="viewer" class="viewer" aria-hidden="true">
+ <div class="viewerbar"><button id="closeViewer" class="iconbtn">✕</button><span id="viewerTitle">Media</span><div><button id="favBtn" class="iconbtn">♡</button><button id="moreBtn" class="iconbtn">⋯</button></div></div>
+ <div id="stage" class="stage"><img id="photo" alt=""><video id="video" playsinline controls></video><div id="emptyStage"></div></div>
+ <div id="photoControls" class="photoControls"><button id="rotateBtn">↻ Rotate</button><button id="slideshowBtn">▶ Slideshow</button><button id="shareBtn">↗ Share</button></div>
+ <div id="videoControls" class="videoControls">
+   <div class="seekrow"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0"><span id="duration">0:00</span></div>
+   <div class="controlrow"><button id="back10">−10s</button><button id="playBtn">▶ / ❚❚</button><button id="forward10">+10s</button><select id="speed"><option>0.25</option><option>0.5</option><option>0.75</option><option selected>1</option><option>1.25</option><option>1.5</option><option>1.75</option><option>2</option></select><button id="videoShare">↗</button></div>
+ </div>
+ <div class="swipehint">Swipe left/right to change • Double-tap video ±10s • Pinch photo to zoom</div>
+</div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body></html>
